@@ -12,7 +12,7 @@ spring:
   redis:
     host: 8.130.90.133
     port: 6379
-    password: 010208
+    password: "010208"
     database: 0
 mybatis-plus:
   configuration:
