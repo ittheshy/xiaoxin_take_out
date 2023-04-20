@@ -1,5 +1,6 @@
 package com.yjc.xiaoxin.service;
 
+import com.yjc.xiaoxin.common.R;
 import com.yjc.xiaoxin.common.dto.SetmealDto;
 import com.yjc.xiaoxin.domain.Setmeal;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -18,5 +19,7 @@ public interface SetmealService extends IService<Setmeal> {
     void deleteSetmealWithDish(List<Long> list);
 
     void modifyStatus(int status,List<Long> list);
+
+    R<SetmealDto> findById(Long id);
 
 }

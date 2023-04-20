@@ -3,12 +3,14 @@ package com.yjc.xiaoxin.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yjc.xiaoxin.common.CustomException;
+import com.yjc.xiaoxin.common.R;
 import com.yjc.xiaoxin.common.dto.SetmealDto;
 import com.yjc.xiaoxin.domain.Setmeal;
 import com.yjc.xiaoxin.domain.SetmealDish;
 import com.yjc.xiaoxin.service.SetmealDishService;
 import com.yjc.xiaoxin.service.SetmealService;
 import com.yjc.xiaoxin.mapper.SetmealMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -76,6 +78,23 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal>
             return item;
         }).collect(Collectors.toList());
         this.updateBatchById(list1);
+    }
+
+    /**
+     * 通过套餐id获取套餐及菜品信息
+     *
+     */
+    @Override
+    public R<SetmealDto> findById(Long setmealId){
+        Setmeal setmeal = this.getById(setmealId);
+        SetmealDto setmealDto = new SetmealDto();
+        setmealDto.setCategoryName(setmeal.getName());
+        BeanUtils.copyProperties(setmeal,setmealDto);
+        LambdaQueryWrapper<SetmealDish> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(SetmealDish::getSetmealId,setmealId);
+        List<SetmealDish> list = setmealDishService.list(lqw);
+        setmealDto.setSetmealDishes(list);
+        return R.success(setmealDto);
     }
 }
 

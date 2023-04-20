@@ -1,6 +1,8 @@
 package com.yjc.xiaoxin.common;
 
 import lombok.Data;
+
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +12,7 @@ import java.util.Map;
  * @param <T>
  */
 @Data
-public class R<T> {
+public class R<T> implements Serializable {
 
     private Integer code; //状态码，1表示成功，0或其他表示失败
 

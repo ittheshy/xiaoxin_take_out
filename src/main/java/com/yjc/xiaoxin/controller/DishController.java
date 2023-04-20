@@ -147,16 +147,16 @@ public class DishController {
      * @return
      */
     @GetMapping("/list")
-    public R<List<DishDto>> list(Long categoryId,Integer status) {
+    public R<List<DishDto>> list(Long categoryId) {
         LambdaQueryWrapper<Dish> lqw = new LambdaQueryWrapper<>();
         List<DishDto> list1;
         //动态构造key，以便存入redis中
-       String key = "dish_" + categoryId + "_" +  status;
+       String key = "dish_" + categoryId + "_1";
        list1 = (List<DishDto>) redisTemplate.opsForValue().get(key);
        if(list1 != null){
            return R.success(list1);
        }
-        lqw.eq(categoryId != null,Dish::getCategoryId, categoryId).eq(Dish::getStatus,status);
+        lqw.eq(categoryId != null,Dish::getCategoryId, categoryId).eq(Dish::getStatus,1);
         lqw.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
         List<Dish> list = dishService.list(lqw);
         list1 = list.stream().map((item) ->{
