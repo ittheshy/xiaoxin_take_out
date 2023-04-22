@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -14,26 +17,31 @@ import lombok.Data;
  */
 @TableName(value ="setmeal")
 @Data
+@ApiModel("套餐")
 public class Setmeal implements Serializable {
     /**
      * 主键
      */
+    @ApiModelProperty("主键")
     @TableId
     private Long id;
 
     /**
      * 菜品分类id
      */
+    @ApiModelProperty("菜品id")
     private Long categoryId;
 
     /**
      * 套餐名称
      */
+    @ApiModelProperty("套餐名称")
     private String name;
 
     /**
      * 套餐价格
      */
+    @ApiModelProperty("套餐价格")
     private BigDecimal price;
 
     /**
