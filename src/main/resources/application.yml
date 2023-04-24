@@ -58,4 +58,4 @@ mybatis-plus:
     db-config:
       id-type: ASSIGN_ID
 xiaoxin:
-  path: E:/
+  path: /usr/local/image/

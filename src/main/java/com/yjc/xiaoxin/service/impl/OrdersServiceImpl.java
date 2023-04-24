@@ -79,14 +79,13 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders>
         orders.setAddressBookId(addressBookId);
         orders.setAddress((addressBook.getProvinceName() == null ? "":addressBook.getProvinceName())
         + (addressBook.getCityName() == null ? "":addressBook.getCityName())
-        + (addressBook.getDistrictName() == null ? "":addressBook.getDistrictName()));
+        + (addressBook.getDistrictName() == null ? "":addressBook.getDistrictName())
+        + (addressBook.getDetail() == null ? "":addressBook.getDetail()));
         orders.setOrderTime(LocalDateTime.now());
         orders.setAmount(new BigDecimal(amount.get()));
         orders.setConsignee(addressBook.getConsignee());
         orders.setCheckoutTime(LocalDateTime.now());
         orders.setPhone(addressBook.getPhone());
-        orders.setUserName(user.getName());
-        orders.setUserName(user.getName());
         this.save(orders);
         //保存多条订单明细信息
         orderDetailService.saveBatch(orderDetails);

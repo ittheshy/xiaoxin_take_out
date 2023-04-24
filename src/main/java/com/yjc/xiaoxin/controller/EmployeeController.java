@@ -7,14 +7,11 @@ import com.yjc.xiaoxin.common.R;
 import com.yjc.xiaoxin.domain.Employee;
 import com.yjc.xiaoxin.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
-
 @Slf4j
 @RestController
 @RequestMapping("/employee")
